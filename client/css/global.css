@@ -8,22 +8,49 @@ main{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+/* 
+    width: 900px;
+    height: 800px; */
 }
 
 #city{
 
-    
     height: 50vh;
 }
 
 .background-quebec{
     background-color: aqua;
+    background-image: url("../images/quebec_street.png");
+    background-size: cover;
 }
 .background-paris{
     background-color: yellowgreen;
 }
 .background-tokyo{
     background-color: orange;
+}
+
+.snowDrop,
+.rainDrop{
+
+    border-radius: 100%;
+    background-color: white;
+    box-shadow: 0 0 10vh white;
+    margin-left:-0.5vh !important;
+    margin-top:-0.5vh !important;
+    height: 1vh;
+    width: 1vh;
+    
+    position: absolute;
+    top: 100px;
+}
+
+.rainDrop{
+    border-radius: 0%;
+    background-color: rgba(3, 3, 71, 0.644);
+    width: 1px;
+    height: 20px;
+    
 }
 
 .workspace{

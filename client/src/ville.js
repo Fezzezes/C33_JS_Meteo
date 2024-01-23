@@ -1,4 +1,6 @@
 import { fetchData } from "./meteo-api";
+import { spriteList } from "./page-meteo";
+import { Rain } from "./rain";
 
 export class Ville{
 
@@ -8,6 +10,9 @@ export class Ville{
         this.citySelect = document.querySelector("#city_select");
         this.cityName = document.querySelector("#city_name");
         this.weatherData;
+        this.isRaining = false;
+        this.isDay = false;
+        this.windy = false;
 
         this.changeCity();
         this.citySelect.addEventListener("change", () => this.changeCity()) 
@@ -45,5 +50,16 @@ export class Ville{
 
         this.weatherData = await fetchData(lat, long);
         console.log(this.weatherData);
+        
+        if(this.weatherData.rain == 0){
+            console.log("it's raining!!!");
+            spriteList.push(new Rain(this.weatherData.rain, this.weatherData.windSpeed10m, this.weatherData.temperature));
+        }
+
+    }
+
+    tick()
+    {
+        console.log("ville")
     }
 }

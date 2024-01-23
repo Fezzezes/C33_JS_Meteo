@@ -1,27 +1,44 @@
 import { spriteList } from "./page-meteo";
 
-export class Rain{
+export class WeatherManager{
 
-    constructor(rain, wind, temp){
+    constructor(){
 
         this.node = document.createElement("div");
-        this.node.classList.add("rain")
+        this.node.classList.add("weather")
         
-        this.rain = rain;
-        this.wind = wind;
-        this.temp = temp;
+        this.weatherData;
+        this.rain = 0;
+        this.wind = 0;
+        this.temp = 0;
 
+        document.querySelector("#city").append(this.node)
+
+        console.log(this);
+        this.alive = true;
+    }
+
+    setWeather(weatherData){
+
+        console.log(weatherData);
+        this.weatherData = weatherData;
+
+        this.rain = weatherData.rain;
+        this.rain = 1;
+        this.wind = weatherData.windSpeed10m;
+        this.wind = 20
+        this.temp = weatherData.temperature;
         console.log("rain: "+this.rain);
         console.log("wind: "+this.wind);
         console.log("temp: "+this.temp);
-
-        document.querySelector("#city").append(this.node)
     }
 
     tick()
     {
-        spriteList.push(new Particule(this.temp, this.wind));
-        return true;
+        if(this.rain != 0)
+            spriteList.push(new Particule(this.temp, this.wind));
+
+        return this.alive;
     }
 }
 
@@ -49,7 +66,7 @@ class Particule {
         this.node.style.left = this.x+"px";
         this.node.style.scale = Math.random()*1.5
 
-        document.querySelector(".rain").append(this.node)
+        document.querySelector(".weather").append(this.node)
         this.speed = this.wind + 5;
     }
 
@@ -64,8 +81,6 @@ class Particule {
         this.x += this.wind;
         this.node.style.left = this.x+"px";
         
-    
-  
         if(this.y > 600)
         {
             this.node.remove();

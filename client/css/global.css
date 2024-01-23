@@ -16,18 +16,27 @@ main{
 #city{
 
     height: 50vh;
+    
+}
+
+.background-quebec,
+.background-paris,
+.background-tokyo{
+    background-size: cover;
 }
 
 .background-quebec{
     background-color: aqua;
-    background-image: url("../images/quebec_street.png");
-    background-size: cover;
+
+    background-image: url("../img/quebec_jour.png");  
 }
 .background-paris{
     background-color: yellowgreen;
+    background-image: url("../img/paris_jour.png");
 }
 .background-tokyo{
     background-color: orange;
+    background-image: url("../img/tokyo_jour.png");
 }
 
 .snowDrop,

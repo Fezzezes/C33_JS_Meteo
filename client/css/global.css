@@ -2,3 +2,37 @@
     margin:0;
     padding:0;
 }
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#city{
+
+    
+    height: 50vh;
+}
+
+.background-quebec{
+    background-color: aqua;
+}
+.background-paris{
+    background-color: yellowgreen;
+}
+.background-tokyo{
+    background-color: orange;
+}
+
+.workspace{
+    background-color: brown;
+    height: 40vh;
+}
+
+.scoreboard{
+    background-color: cadetblue;
+    height: 10vh;
+    min-height: 50px;
+}

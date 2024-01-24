@@ -19,6 +19,11 @@ main{
     
 }
 
+.workspace{
+    background-image: url("../img/table.PNG");
+    background-size: cover; 
+}
+
 .background-quebec,
 .background-paris,
 .background-tokyo{

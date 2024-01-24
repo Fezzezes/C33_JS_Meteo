@@ -31,7 +31,21 @@ export class WeatherManager{
         console.log("rain: "+this.rain);
         console.log("wind: "+this.wind);
         console.log("temp: "+this.temp);
+
+        document.querySelector("#rain_btn").checked = this.rain > 0;
+        document.querySelector("#wind_btn").value = this.wind;
+        document.querySelector("#temp_btn").value = this.temp;
     }
+
+    // setWeather(rain, wind, temp){
+
+    //     this.rain = rain;
+    //     this.wind = wind;
+    //     this.temp = temp;
+    //     console.log("rain: "+this.rain);
+    //     console.log("wind: "+this.wind);
+    //     console.log("temp: "+this.temp);
+    // }
 
     tick()
     {
@@ -81,7 +95,7 @@ class Particule {
         this.x += this.wind;
         this.node.style.left = this.x+"px";
         
-        if(this.y > 600)
+        if(this.y > 700)
         {
             this.node.remove();
             alive = false;

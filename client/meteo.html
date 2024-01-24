@@ -16,6 +16,16 @@
             <option value="tokyo">Tokyo</option>
         </select>
 
+        <form action="" method="get" onsubmit="setWeather()">
+            <label>Rain<input type="checkbox" id="rain_btn"></label>
+            <label>Wind<input type="range" min="0" max="100" id="wind_btn"></label>
+            <label>Temp<input type="range"  min="-50" max="70" id="temp_btn"></label>
+            <button type="submit">Update Meteo</button>
+        </form>
+
+        
+        
+
         <main class="game-container">
             <div id="city">background
                 <div>Ville: <span id="city_name"></span></div>

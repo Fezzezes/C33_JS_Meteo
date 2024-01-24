@@ -47,7 +47,9 @@ export class Ville{
         }
 
         this.weatherData = await fetchData(lat, long);
+        console.log(this.weatherData);
         this.weatherManager.setWeather(this.weatherData)        
+        
         this.setBackground(this.weatherData.isDay == 0)
     }
 

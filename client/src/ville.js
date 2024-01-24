@@ -45,15 +45,7 @@ export class Ville{
         }
     }
 
-    // async updateWeather(){
-
-
-    //     this.weatherData = await fetchData(lat, long);
-    //     console.log(this.weatherData);
-    //     this.weatherManager.setWeather(this.weatherData)        
-        
-    //     this.setBackground(this.weatherData.isDay == 0)
-    // }
+  
 
     setBackground(isDay){
 
@@ -80,9 +72,4 @@ export class Ville{
         }
     }
 
-
-    tick()
-    {
-        console.log("ville")
-    }
 }

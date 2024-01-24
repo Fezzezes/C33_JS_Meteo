@@ -17,9 +17,11 @@ export class WeatherManager{
         // this.temp = 0;
 
         // document.querySelector("#city-view-window").prepend(this.node);
-        this.statusWindow = document.querySelector("#weather-status-window");
+        
         this.weatherText = document.createElement("p");
+        this.weatherText.id="status";
 
+        this.statusWindow = document.querySelector("#weather-status-window");
         this.statusWindow.append(this.weatherText);
         this.setWeather(weatherData)
         
@@ -32,9 +34,9 @@ export class WeatherManager{
         this.weatherData = weatherData;
 
         this.rain = weatherData.rain;
-        this.rain = 1;
+        // this.rain = 1;
         this.wind = weatherData.windSpeed10m;
-        this.wind = 10
+        // this.wind = 10
         this.temp = weatherData.temperature;
         console.log("rain: "+this.rain);
         console.log("wind: "+this.wind);

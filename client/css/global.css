@@ -1,6 +1,20 @@
+/*Kanit foot de google font*/
+@import url('https://fonts.googleapis.com/css2?family=Blaka+Ink&family=Calligraffitti&family=Kanit:ital,wght@0,500;1,500&family=Roboto+Mono:wght@100&display=swap');
+
+/*Presse Start 2p de google font*/
+@import url('https://fonts.googleapis.com/css2?family=Blaka+Ink&family=Calligraffitti&family=Kanit:ital,wght@0,500;1,500&family=Press+Start+2P&family=Roboto+Mono:wght@100&display=swap');
+
+
 * {
     margin:0;
     padding:0;
+    /*Font par default de la page*/
+    font-family: 'Press Start 2P', cursive;
+    font-weight:lighter;
+    text-shadow: 1px 1px black;
+
+    /*Augmente l'espace entre les lignes pour rendre le texte plus lisible avec le glow*/
+    line-height: 2;
 }
 
 
@@ -21,7 +35,8 @@ main{
 
 .workspace{
     background-image: url("../img/table.PNG");
-    background-size: cover; 
+    background-size:contain;
+    background-repeat: no-repeat; 
 }
 
 .background-quebec,
@@ -67,13 +82,189 @@ main{
     
 }
 
-.workspace{
-    background-color: brown;
-    height: 40vh;
+/*---------------------------------------------------*/
+
+h1,h2,h3,h4{
+    /*Font par default des titres*/
+    font-family: 'Kanit', cursive;
+    font-weight:bold;
+    font-style: italic;
+
+    text-align: center;
+    text-shadow: 1px 5px black;
+   
+    color:rgb(226, 230, 221);
 }
 
-.scoreboard{
-    background-color: cadetblue;
-    height: 10vh;
-    min-height: 50px;
+h1{
+    font-size:200%;
+    margin: 0;
 }
+
+h2{
+    font-size:170%;
+    margin: 0;
+}
+
+h3{
+    font-size: 150%;
+    /*Les h3 auront une texture en background*/
+    /*Source: https://www.toptal.com/designers/subtlepatterns/micro-carbon/*/
+    background-image: url(../img/micro_carbon.png);
+    /*Arroundit les 2 coins supérieurs de 30px et ceux inférieurs de 5px*/
+    border-radius: 30px 30px 5px 5px;
+    /*Fait un effet de lumière verte sous l'image*/
+    box-shadow: 0px 25px 20px rgba(53, 248, 4, 0.329);
+    
+    /*Le background du h3 fera la largeur de sa boite*/
+    width: 100%;
+    /*Aucune marge inférieur pour colle le background des 'p' enfants au background des h3*/
+    margin-bottom:  0; 
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+body{
+    /*Image background, des étoiles en repeat*/
+    /*Source: https://www.toptal.com/designers/subtlepatterns/ep-natural-black/*/
+    background-image: url(../img/ep_naturalblack.png);
+    background-repeat:repeat;
+    /*le background ne bouge pas avec le scroll*/
+    background-attachment: fixed;
+    /*page margin*/
+    margin: 20px;
+}
+
+main{
+    /*padding et margin par défaut d'une section*/
+    padding: 50px;
+    margin: 25px;
+    /*background vert degradé transparent*/
+    background-image: linear-gradient(to bottom right,rgba(142, 236, 205, 0.342) , rgba(8, 245, 166, 0.11)); 
+    /*bordure grise à gauche et en haut du background*/
+    border-left: 4px  gray solid;
+    border-top: 4px  gray solid;
+    /*coins arrondies*/
+    border-radius: 25px;
+
+}
+
+#index-main{
+    margin-top: 200px;
+}
+
+.highlight{
+    /*Couleur choisi pour highlight les liens*/
+    color: #71e4849f;
+}
+
+li, p, section{
+    /*Chaque 'p' et liste ul auront un background similaire aux sections mais plus foncé*/
+    
+    /*aligné au centre, avec un plus petit width que leur h3*/
+    align-self:center;
+    width: 98%;
+    /*aucune marge au-dessus et en-dessous pour permettre aux backgrounds de se coller*/
+    margin-top: 0;
+    margin-bottom: 0;
+
+    padding: 10px;
+    text-align: left;
+
+    /*Textes blanc avec un shadow vert pour donné un effet lumineux vert*/
+    text-shadow: 1px 1px 10px rgb(80, 165, 108);
+    color: rgb(196, 194, 194);
+    /*Un plus petit font était plus lisible*/
+    font-size: 85%;
+}
+
+section{
+    padding-top: 40px;
+    border-radius: 0px 0px 25px 25px;
+
+    display: flex;
+    justify-content: space-around;
+    background-color:rgba(39, 36, 36, 0.61);
+
+    width: 98%;
+    /*aucune marge au-dessus et en-dessous pour permettre aux backgrounds de se coller*/
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+p:last-child:after{
+    /*Ajoute un '|' clignotant pour faire un effet de terminal*/
+    content: '|';
+    animation: inputFlicker   1s step-end infinite;
+}
+
+/*Fonctionnalité que nous n'avons pas vue en classe*/
+/*le clignotant aura une opacité de 0 au midpoint*/
+/*Source aide: https://css-tricks.com/snippets/css/typewriter-effect/*/
+@keyframes inputFlicker {
+    50% {opacity: 0;}
+}
+
+#authentification-window{
+    width: 40%;
+    height: fit-content;
+}
+
+#status-window{
+    width: 30%;
+
+}
+
+#status-window div{
+    text-align: center;
+}
+#status-window li{
+    padding: 0;
+    padding-bottom: 5px;
+}
+
+
+
+.window{
+
+    
+    /*Place les enfants en colonne, le plus bas possible*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /*sera 3e dans l'ordre .intro*/
+    order: 10;
+    /*plus petit font*/
+    font-size: smaller;
+}
+
+.window {
+    padding: 20px;
+    border: gray solid;
+    border-radius: 25px 25px 25px 25px;
+    background-color:rgba(39, 36, 36, 0.61);
+  
+}
+
+
+.window p:last-child::after{
+    /*pas besoin de cligotant de terminal ici*/
+    /* content: none; */
+}
+
+input{
+
+    background-color: rgba(0, 0, 0, 0.137);
+    border-radius: 5px;
+    border: none;
+    padding-left: 15px;
+}
+
+.d-none{
+    /* display: none; */
+    color: red;
+    padding-left: 15px;
+}
+

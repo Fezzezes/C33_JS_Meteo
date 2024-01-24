@@ -10,14 +10,38 @@
     </head>
     <body>         
         
-        <form action="meteo.html" method="post" id="password-form">
-            <div class="d-none" id="error-message">
-                Erreur d'authentification
+	<main id="index-main">
+        <h1>Centre de control météologique de dieu</div>
+        <h3>Terminal</h3>
+        <section>
+            <div class="window" id="authentification-window">
+                <p>Veillez entrer votre mot de passe </p>
+                <form action="meteo.html" method="post" id="password-form">
+      
+                    <div class="d-none" id="error-message">
+                        Erreur d'authentification
+                    </div>
+                    <input type="password" name="password" id="password" placeholder="Mot de passe">            
+                    <button type="submit">Entrer</button>
+                    
+                </form>
             </div>
-            <input type="password" name="password" id="password" placeholder="Mot de passe">            
-            <button type="submit">Entrer</button>
-            
-        </form>
+
+            <div class="window" id="status-window">
+                <ul id="status">
+                    <div>Status</div>
+                    <li>Québec : <span class="highlight">Online</span></li>
+                    <li>Paris  : <span class="highlight">Online</span></li>
+                    <li>Tokyo  : <span class="highlight">Online</span></li>
+                </ul>
+            </div>
+
+        </section>
+
+        
+	</main>
+
+
 
     </body>
 </html>

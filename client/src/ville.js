@@ -1,17 +1,16 @@
 import { fetchData } from "./meteo-api";
-import { spriteList } from "./page-meteo";
+import { spriteList, startLoadingScreen } from "./page-meteo";
 import { WeatherManager } from "./weatherManager";
 
 export class Ville{
 
     constructor(city){
 
-        this.node = document.querySelector("#city-view-window");
+        this.node = document.querySelector("#city-background");
         this.cityName = city
         
         this.lat;
         this.long;
-        this.setCoordonate();
         // spriteList.push(this.weatherManager);
 
         this.changeCity(city);
@@ -26,7 +25,9 @@ export class Ville{
         this.node.classList.add("background-"+nextCity);
         text.innerText = nextCity; 
         this.cityName = nextCity;
-        /* this.updateWeather();*/
+        this.setCoordonate();
+
+        startLoadingScreen();
     }
 
     setCoordonate(){

@@ -1,5 +1,6 @@
-import { spriteList } from "./page-meteo";
+import { loading, spriteList } from "./page-meteo";
 import Particule from "./particule";
+
 
 export class WeatherManager{
 
@@ -52,7 +53,7 @@ export class WeatherManager{
 
     tick()
     {
-        if(this.rain != 0)
+        if(this.rain != 0 && !loading.alive)
             spriteList.push(new Particule(this.temp, this.wind));
 
             // this.rain = 0;

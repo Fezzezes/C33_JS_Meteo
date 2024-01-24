@@ -1,11 +1,11 @@
 export default class Particule {
     constructor(temp, wind){
-        console.log("snow");
+
         this.node = document.createElement("div");
         this.parent = document.querySelector("#city-view-window");
         
        
-        this.parent.prepend(this.node);
+        this.parent.append(this.node);
 
         this.wind = 0.5*wind;
    

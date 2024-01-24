@@ -1,7 +1,8 @@
 import { fetchData } from "./meteo-api";
 import { Ville } from "./ville";
 import { WeatherManager } from "./weatherManager";
-
+import loadingScreen from "./loading";
+import { loadingCircle } from "./loading";
 
 let currentCity;
 export let spriteList = [];
@@ -13,6 +14,9 @@ let commandlineIsFocus;
 // let btnTemp;
 let lessTempBtn;
 let moreTempBtn;
+
+export let loading;
+
 window.addEventListener("load", async () => {
 
 
@@ -24,7 +28,6 @@ window.addEventListener("load", async () => {
     spriteList.push(weatherManager);
 
     commandline = document.querySelector("#command-line")
-    console.log(commandline)
     globalTick();
 
 
@@ -58,23 +61,17 @@ window.addEventListener("keyup", async (e) =>{
     let city = document.querySelector("#city_select");
     if(e.key == "1")
     {
-        currentCity.changeCity("quebec");
-        console.log(currentCity.lat+", "+currentCity.long)
-        weatherManager.setWeather(await fetchData(currentCity.lat, currentCity.long))
+        changeCity("quebec") ;
     }
         
     else if(e.key == "2")
     {
-        currentCity.changeCity("paris");
-        console.log(currentCity.lat+", "+currentCity.long)
-        weatherManager.setWeather(await fetchData(currentCity.lat, currentCity.long))
+        changeCity("paris") ;
     }
 
     else if(e.key == "3")
     {
-        currentCity.changeCity("tokyo");
-        console.log(currentCity.lat+", "+currentCity.long)
-        weatherManager.setWeather(await fetchData(currentCity.lat, currentCity.long))
+        changeCity("tokyo") ;
     }
 
     else if(e.key == "Enter" && document.activeElement === commandline)
@@ -83,6 +80,13 @@ window.addEventListener("keyup", async (e) =>{
     }
         
 })
+
+const changeCity = async (city) =>{
+
+    currentCity.changeCity(city);
+    console.log(currentCity.lat+", "+currentCity.long)
+    weatherManager.setWeather(await fetchData(currentCity.lat, currentCity.long))
+}
 
 const submitCommand = () => {
 
@@ -103,48 +107,19 @@ const submitCommand = () => {
     commandline.value = "";
 }
 
+
 export const startLoadingScreen = () =>{
-
-    spriteList.push(new loadingScreen());
-
-}
-
-class loadingScreen {
-
-    constructor(node){
-        
-        this.node = document.querySelector("#city-loadingScreen");
-        this.speed = 20;
-        this.y = 0;
-        this.node.style.top = "0px";
-        // this.node.style.display = "block";
-        console.log(this.node.style.top)
-    }
-
-    tick(){
-
-        
-        let rnd = Math.random()
-        console.log(rnd) 
-        if(rnd < 0.2)
-        {
-            this.y += Math.random()*this.speed;
-            this.node.style.top = this.y+"px";
     
-            console.log(this.node.style.top)
-        }
-
-        if(this.y > 600)
-        {
-            
-            return false;
-        }
-            
-        else
-            return true;
-
+    if(loading != null){
+        loading.alive = false;
     }
+
+    loading = new loadingScreen()
+    spriteList.push(loading);
+
 }
+
+
 
 
 

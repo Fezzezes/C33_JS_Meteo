@@ -1,20 +1,25 @@
 import { spriteList } from "./page-meteo";
+import Particule from "./particule";
 
 export class WeatherManager{
 
-    constructor(){
+    constructor(weatherData){
 
         this.node = document.createElement("div");
         this.node.classList.add("weather")
         
         this.weatherData;
-        this.rain = 0;
-        this.wind = 0;
-        this.temp = 0;
 
-        document.querySelector("#city").append(this.node)
+        this.setWeather(weatherData)
+        // this.rain = 0;
+        // this.wind = 0;
+        // this.temp = 0;
 
-        console.log(this);
+        document.querySelector("#city-view-window").prepend(this.node);
+        this.statusWindow = document.querySelector("#weather-status-window");
+        this.weatherText = document.createElement("p");
+        this.weatherText.innerText = "Il fait présentement "+this.temp+" degrées Celcius";
+        this.statusWindow.append(this.weatherText);
         this.alive = true;
     }
 
@@ -37,71 +42,14 @@ export class WeatherManager{
         document.querySelector("#temp_btn").value = this.temp;
     }
 
-    // setWeather(rain, wind, temp){
-
-    //     this.rain = rain;
-    //     this.wind = wind;
-    //     this.temp = temp;
-    //     console.log("rain: "+this.rain);
-    //     console.log("wind: "+this.wind);
-    //     console.log("temp: "+this.temp);
-    // }
-
     tick()
     {
         if(this.rain != 0)
             spriteList.push(new Particule(this.temp, this.wind));
 
+            // this.rain = 0;
+
         return this.alive;
     }
 }
 
-class Particule {
-    constructor(temp, wind){
-
-        this.node = document.createElement("div");
-        this.wind = 0.5*wind;
-
-        //test
-        
-
-        this.windVelocity = 0;
-        if(temp < -2)
-        {
-            this.windVelocity = Math.random()*(this.wind);
-            this.node.classList.add("snowDrop");  
-        }
-            
-        else
-            this.node.classList.add("rainDrop");
-        
-        this.x = (Math.random()*window.innerWidth-200);
-        this.y = 0;
-        this.node.style.left = this.x+"px";
-        this.node.style.scale = Math.random()*1.5
-
-        document.querySelector(".weather").append(this.node)
-        this.speed = this.wind + 5;
-    }
-
-    tick (){
-        
-        let alive = true;
-
-        this.y += this.speed;
-        this.node.style.top = this.y+"px";
-        
-        this.wind += this.windVelocity;
-        this.x += this.wind;
-        this.node.style.left = this.x+"px";
-        
-        if(this.y > 700)
-        {
-            this.node.remove();
-            alive = false;
-        }
-
-        return alive;
-    }
-
-}

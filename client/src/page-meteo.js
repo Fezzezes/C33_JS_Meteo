@@ -1,29 +1,33 @@
 import { fetchData } from "./meteo-api";
 import { Ville } from "./ville";
-
+import { WeatherManager } from "./weatherManager";
 
 
 let currentCity;
 export let spriteList = [];
-
+let weatherManager;
 
 // let btnRain;
 // let btnWind;
 // let btnTemp;
 
 window.addEventListener("load", async () => {
-    let weatherData = await fetchData(45.5019, 73.5674);
-    console.log(weatherData)
+
+    currentCity = new Ville();
+    
+    let weatherData = await fetchData(currentCity.lat, currentCity.long);
+    weatherManager = new WeatherManager(weatherData);
+    spriteList.push(weatherManager);
 
     //-----------------------
-    currentCity = new Ville();
-
     document.querySelector("#rain_btn").addEventListener("change",setRain)
     document.querySelector("#wind_btn").addEventListener("change",setWind)
     document.querySelector("#temp_btn").addEventListener("change",setTemp)
 
     globalTick(); 
 })
+
+
 
 const globalTick = () => {
 

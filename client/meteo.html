@@ -9,6 +9,7 @@
         <link rel="icon" href="img/favicon.png" type="image/png" />
     </head>
     <body>
+
         <a href="index.html">Quitter</a>
         <select name="city" id="city_select">
             <option value="quebec">Québec</option>
@@ -16,19 +17,36 @@
             <option value="tokyo">Tokyo</option>
         </select>
 
-        <form action="" method="get" onsubmit="setWeather()">
-            <label>Rain<input type="checkbox" id="rain_btn"></label>
-            <label>Wind<input type="range" min="0" max="100" id="wind_btn"></label>
-            <label>Temp<input type="range"  min="-50" max="70" id="temp_btn"></label>
-            <button type="submit">Update Meteo</button>
-        </form>
 
-        <main id="meteo-main">
+        <div id="control-window"> 
+            <div class="window" id="button-panel">
+                <form action="" method="get" onsubmit="setWeather()">
+                    <label>Rain<input type="checkbox" id="rain_btn"></label>
+                    <label>Wind<input type="range" min="0" max="100" id="wind_btn"></label>
+                    <label>Temp<input type="range"  min="-50" max="70" id="temp_btn"></label>
+                    <button type="submit">Update Meteo</button>
+                    <label>><input type="text" id="command-line"></label>
+                </form>
+             </div>
+             <div class="window" id="city-selection-window">
+                <ol id="city-selection-list">
+                    <div style="text-align: center;">Select City</div>
+                    <li>Québec : <span class="highlight">Online</span></li>
+                    <li>Paris  : <span class="highlight">Online</span></li>
+                    <li>Tokyo  : <span class="highlight">Online</span></li>
+                </ol>
+             </div>
+        </div>
+        </div>
+        <div>
+
+
+        <div id="meteo-main" class="window-green">
 
             <div class="window" id="city-view-window">
                 <div class="window" id="weather-status-window">
                     <p>Ville:<span id="city_name"></span></p></div>
             </div>
-        </main>
+        </div>
     </body>
 </html>

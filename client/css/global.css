@@ -18,14 +18,6 @@
 }
 
 
-main{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-/* 
-    width: 900px;
-    height: 800px; */
-}
 
 /*---------------------------------------------------*/
 
@@ -82,7 +74,7 @@ body{
     overflow: hidden;
 }
 
-main{
+.window-green{
     /*padding et margin par défaut d'une section*/
     padding: 50px;
     margin: 25px;
@@ -93,7 +85,15 @@ main{
     border-top: 4px  gray solid;
     /*coins arrondies*/
     border-radius: 25px;
-
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* 
+    width: 900px;
+    height: 800px; */
+    
+    
 }
 
 #index-main{
@@ -166,7 +166,8 @@ p:last-child:after{
 #status-window div{
     text-align: center;
 }
-#status-window li{
+
+li{
     padding: 0;
     padding-bottom: 5px;
 }
@@ -218,7 +219,7 @@ input{
 
 #city-view-window{
 
-    height: 70vh;
+    height: 60vh;
     overflow: hidden;
 
     display: flex;
@@ -272,6 +273,18 @@ input{
 
 
 /*----------------------------meteo-----------------------------*/
+#button-panel{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    height:fit-content
+}
+
+#control-window{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
 
 #city-weather-window{
     display: block;
@@ -284,4 +297,16 @@ input{
 
 #weather{
 
+
+
+}
+
+#city-selection-window{
+
+    width: 350px;
+    padding-left: 25px;
+}
+
+#city-selection-window li{
+margin-left: 25px;
 }

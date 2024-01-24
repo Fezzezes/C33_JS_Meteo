@@ -47,7 +47,7 @@ export class WeatherManager{
         if(this.rain != 0)
             spriteList.push(new Particule(this.temp, this.wind));
 
-            // this.rain = 0;
+             this.rain = 0;
 
         return this.alive;
     }

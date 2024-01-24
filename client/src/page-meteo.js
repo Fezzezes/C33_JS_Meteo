@@ -13,7 +13,7 @@ let weatherManager;
 
 window.addEventListener("load", async () => {
 
-    currentCity = new Ville();
+    currentCity = new Ville("quebec");
     
     let weatherData = await fetchData(currentCity.lat, currentCity.long);
     weatherManager = new WeatherManager(weatherData);
@@ -45,6 +45,17 @@ const globalTick = () => {
     // console.log(spriteList);
     window.requestAnimationFrame(globalTick);
 }
+
+window.addEventListener("keyup", (e) => {
+    console.log(e.key)
+    let city = document.querySelector("#city_select");
+    if(e.key == "1")
+        currentCity.changeCity("quebec");
+    else if(e.key == "2")
+        currentCity.changeCity("paris");
+    else if(e.key == "3")
+        currentCity.changeCity("tokyo");
+})
 
 export const setRain = () => {
     

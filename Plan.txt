@@ -1,0 +1,8 @@
+3 villes : Québec , paris, tokyo
+localStorage: selectionner un ville par défaut par la page index
+Suite d'animation: entrer une commande dans un terminal, suivi d'un loading screen
+Modification de l'état en cours d'animation: loading screen
+Mouvement sprites: meteo
+2 objet: weathermanager, particule
+2 keyboards press: gauche droite pour selectionner les villes, enter dans terminal
+2 mouse event: mouse click , pause la meteo, mouse over, flash de texte

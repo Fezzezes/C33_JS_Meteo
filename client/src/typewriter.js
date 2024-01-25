@@ -21,13 +21,14 @@ export default class TypeWriterEffect{
         
         //incremente compteur
         ++this.tickCounter;
-        //trigger every 'this.speed' tick
+        //trigger every 2 ticks
         if(this.tickCounter % this.speed == 0){
-            
+            //ajoute la lettre au innerText du noeud
             this.node.innerText += this.text.charAt(this.nextLetter);
             ++this.nextLetter;
         }
 
+        //tue l'animation si on atteint la fin du string
        if(this.nextLetter > this.text.length){
             this.alive = false;
        }
@@ -36,6 +37,7 @@ export default class TypeWriterEffect{
     }
 
     killMe(){
+        //tue l'animation prématurement
         this.alive = false;
         this.node.innerText = "";
         console.log("Typerwriter is kill");

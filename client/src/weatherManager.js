@@ -7,33 +7,25 @@ import { currentCity } from "./page-meteo";
 export class WeatherManager{
 
     constructor(weatherData){
-
-        this.node = document.createElement("div");
-        this.node.classList.add("weather")
         
-        console.log(weatherData);
+        //Préserve les données meteo
         this.weatherData = weatherData;
 
-        
-        this.rain = 0;
-        this.snow = 0;
-        this.wind = 0;
-        this.temp = 0;
-        this.daytime = 0;
-
-        // document.querySelector("#city-view-window").prepend(this.node);
+        //set la météo
         this.setWeather(weatherData)
         this.alive = true;
     }
 
     setWeather(weatherData){
 
+        //set la météo
         this.rain = weatherData.rain;
         this.snow = weatherData.snowfall;
         this.daytime =weatherData.isDay;
         this.temp = weatherData.temperature
         this.changeWind(weatherData.windSpeed10m);
 
+        //set le background de la ville
         currentCity.setBackground(this.daytime);
         
         console.log("rain: "+this.rain);
@@ -44,9 +36,13 @@ export class WeatherManager{
     }
 
     changeWind(wind){
+        //le vent ne descend pas sous '0'
+        if(wind < 0)
+            wind = 0;
 
-        console.log("new wind: "+wind);
+        //update le vent
         this.wind = wind;
+        //update la force du vent dans le panneau de controle
         document.querySelector("#celcius").innerText =" wind:"+ wind;
     }
     
@@ -55,7 +51,7 @@ export class WeatherManager{
 
         //retourne un string décrivant la météo actuelle
         let string = "Il fait présentement "+this.temp+" degrées Celcius dans la ville de "+currentCity.cityName+". Les vents soufflent à une force de "+this.wind+". ";
-
+        
         if(this.rain > 0)
             string+="Il y a présentement de la pluie. ";
 
@@ -70,15 +66,15 @@ export class WeatherManager{
 
     tick()
     {
-        //trigger si il n'y a plus de loading dans sprite list
+        //trigger si il n'y a pas de loadingScreen dans sprite list
         if(spriteList.find(x => x instanceof LoadingScreen) == null)
         {
+            //animation de pluie
             if(this.rain > 0)
-                spriteList.push(new RainDrop(this.wind));
-
+                spriteList.push(new RainDrop());
+            //animation de neige
             if(this.snow > 0)
                 spriteList.push(new SnowFlake(this.wind));
-
         }
 
         return this.alive;

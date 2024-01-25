@@ -2,7 +2,6 @@ import { spriteList } from "./page-meteo";
 import { weatherManager } from "./page-meteo";
 import TypeWriterEffect from "./typewriter";
 
-
 export default class LoadingScreen {
 
     constructor(){

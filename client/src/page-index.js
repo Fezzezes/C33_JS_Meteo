@@ -1,5 +1,3 @@
-import Message from "./message";
-
 window.addEventListener("load", () => {
     document.querySelector("#password-form").onsubmit = () => {
         let success = true;
@@ -10,7 +8,7 @@ window.addEventListener("load", () => {
         }
         else
         {
-            //le mot de passe est bon, on va garder le choix de ville
+            //le mot de passe est bon, on va garder le choix de ville pour la prochaine page
             let citySelect;
             if(document.querySelector("#quebec").checked)
                 citySelect = "quebec"
@@ -19,7 +17,6 @@ window.addEventListener("load", () => {
             else if(document.querySelector("#tokyo").checked)
                 citySelect = "tokyo"
 
-            console.log(citySelect)
             localStorage.setItem("city", citySelect)
         }
     

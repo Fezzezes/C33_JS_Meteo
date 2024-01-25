@@ -13,44 +13,60 @@ export default class CommandCenter{
     
     submitCommand(){
     
+        //le texte dans la ligne de commande
         let texte = this.command.value;
         
-
         console.log(texte);
-    
-        if(texte == "sudo rain")
-        {
-            console.log("make it rain")
-            //toggle rain
-            this.weatherManager.rain > 0  ? this.weatherManager.rain = 0 : this.weatherManager.rain = 1;
-            spriteList.push(new Message("Like tears in the rain", "greenyellow"))
+
+        if(texte == "sudo rain"){
+            //toggle rain + message
+            if(this.weatherManager.rain > 0 ){
+                this.weatherManager.rain = 0
+                spriteList.push(new Message("Rain off", "greenyellow"))
+            }
+            else{
+                this.weatherManager.rain = 1
+                spriteList.push(new Message("Rain on", "greenyellow"))
+            }     
         }
-        else if(texte == "sudo snow")
-        {
-            console.log("snow time")
-            //toggle rain
-    
-            this.weatherManager.snow > 0  ? this.weatherManager.snow = 0 : this.weatherManager.snow = 1;
-            spriteList.push(new Message("Winter is coming", "greenyellow"))
+        else if(texte == "sudo snow"){
+
+            //toggle snow + message
+            if(this.weatherManager.snow > 0){
+
+                this.weatherManager.snow = 0
+                spriteList.push(new Message("Snow off", "greenyellow"))
+            }
+            else{
+                this.weatherManager.snow = 1
+                spriteList.push(new Message("Snow on", "greenyellow"))
+            } 
         }
         else if(texte == "sudo daytime"){
-            
-            this.weatherManager.daytime > 0  ? this.weatherManager.daytime = 0 : this.weatherManager.daytime = 1;
-            this.currentCity.setBackground(this.weatherManager.daytime);
+            //toggle daytime + message
+            if(this.weatherManager.daytime > 0 ){
 
-            spriteList.push(new Message("Let there be light", "greenyellow"))
+                this.weatherManager.daytime = 0
+                spriteList.push(new Message("Day Time", "greenyellow"))
+            }
+            else{
+                this.weatherManager.daytime = 1
+                spriteList.push(new Message("Night Time", "greenyellow"))
+            } 
+
+            //ajuste le backgground
+            this.currentCity.setBackground(this.weatherManager.daytime);
         }
         else if(texte == "sudo sat"){
+            //envoie un satelitte
             spriteList.push(new Satellite());
             spriteList.push(new Message("Satelitte launched!", "greenyellow"))
         }
         else{
-          
+            //input invalide
             spriteList.push(new Message("Invalid Input...", "red"))
-            console.log("erreur");
-        }
-            
-    
+        } 
+        //clear la command line
         this.command.value = "";
     }
 }

@@ -23,10 +23,10 @@ export class Ville{
         this.cityName = nextCity;
 
         let nextSelection = document.querySelector("#"+this.cityName+"-select");
-        nextSelection.innerText = "Monitering"; 
+        nextSelection.innerText = "Monitoring"; 
         
         this.setCoordonate();
-        startLoadingScreen();
+        
     }
 
     setCoordonate(){
@@ -36,11 +36,11 @@ export class Ville{
         }
         else if(this.cityName  == "paris"){
             this.lat  = 48.85661;
-            this.long = 71.2075;
+            this.long = -71.2075;
         } 
         else if(this.cityName == "tokyo"){
             this.lat  = 35.6764;
-            this.long = 139.6500;
+            this.long = -139.6500;
         }
     }
 
@@ -59,6 +59,7 @@ export class Ville{
         
 
         this.node.style.backgroundImage = bg;
+        startLoadingScreen();
     }
 
 }

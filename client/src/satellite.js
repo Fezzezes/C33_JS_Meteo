@@ -33,9 +33,13 @@ export default class Satellite{
 
         this.node.style.left = this.x+"px";
         this.node.style.bottom = this.y+"px";
-        console.log(this.x+","+this.y )
+ 
         if(this.x > 1900 || this.y > 800)
+        {
+            this.node.remove();
             this.alive = false;
+        }
+            
 
         return this.alive;
     }

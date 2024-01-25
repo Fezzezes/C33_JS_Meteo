@@ -74,6 +74,26 @@ body{
     overflow:hidden;
 }
 
+a{
+    /*Couleur choisi pour highlight les liens*/
+    color: #71e4849f;
+}
+
+a:link,
+a:visited,
+a:active{
+    text-decoration: none;
+}
+
+a:hover{
+    /*crée un effet de lumière qui clignote quand la souris est au-dessus d'un lien*/
+    animation: glowFlickerGreen 0.5s alternate infinite;
+}
+
+@keyframes glowFlickerGreen {
+    50% { filter: drop-shadow(0px 0px 20px #00f428); }
+}
+
 .window-green{
     /*padding et margin par défaut d'une section*/
     padding: 50px;
@@ -122,7 +142,7 @@ li, p, section{
     text-shadow: 1px 1px 10px rgb(80, 165, 108);
     color: rgb(196, 194, 194);
     /*Un plus petit font était plus lisible*/
-    font-size: 85%;
+    
 }
 
 section{
@@ -155,22 +175,32 @@ p:last-child:after{
 
 #authentification-window{
     width: 40%;
-    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
 }
 
-#status-window{
-    width: 30%;
-
+#index-city-selection{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    
 }
 
-#status-window div{
-    text-align: center;
+.index-city-btn:checked + label{
+    margin-right: 50px;
+    border-radius: 5px;
+
+    text-shadow: 1px 1px 10px rgb(80, 165, 108);
+    color: rgb(196, 194, 194);
+}
+.index-city-btn{
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;   
 }
 
-li{
-    padding: 0;
-    padding-bottom: 5px;
-}
 
 
 
@@ -185,9 +215,7 @@ li{
     order: 10;
     /*plus petit font*/
     font-size: smaller;
-}
 
-.window {
     padding: 20px;
     border: gray solid;
     border-radius: 25px 25px 25px 25px;
@@ -196,14 +224,10 @@ li{
 }
 
 
-/* .window p:last-child::after{
-
-     content: none;
-} */
-
 input{
 
     background-color: rgba(0, 0, 0, 0.137);
+    color: greenyellow;
     border-radius: 5px;
     border: none;
     padding-left: 15px;
@@ -275,19 +299,28 @@ input{
 }
 #button-panel{
     width: 560px;
+    height: 50px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 5px;
+    position: relative;
     
 }
 
 #button-panel p {
-    color: red;
-    text-shadow: 1px 1px 10px rgb(151, 56, 56);
+
+    text-shadow: 1px 1px 10px rgb(29, 28, 28);
     padding: 0px;
-    display: none;
+    opacity: 0;
+    position: absolute;
+    bottom: 10px;
+    right:25px;
+    text-align: right;
+
+    width: 300px;
+    
 }
 #button-panel p:last-child::after{
     /*enleve le clignotant*/
@@ -372,7 +405,7 @@ input{
 #city-selection-window{
 
     height: fit-content;
-    width: 275px;
+    width: 350px;
     padding: 5px;
     padding-left: 25px;
     
@@ -380,6 +413,8 @@ input{
 
 #city-selection-window li{
     margin-left: 25px;
+    padding: 0;
+    padding-top: 3px;
 }
 
 

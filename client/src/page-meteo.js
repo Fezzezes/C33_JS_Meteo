@@ -5,32 +5,45 @@ import LoadingScreen from "./loading";
 import TypeWriterEffect from "./typewriter";
 import Satellite from "./satellite";
 
+import CommandCenter from "./commandcenter";
 export let spriteList = [];
 export let currentCity;
 export let weatherManager;
-let commandline;
 
-
-
+let commandCenter;
 
 
 window.addEventListener("load", async () => {
 
-    console.log(await fetchData(28.6139,-77.2090 ))
-    
-    currentCity = new Ville("quebec");
+    currentCity = new Ville(localStorage.getItem("city"));
     
     let weatherData = await fetchData(currentCity.lat, currentCity.long);
     weatherManager = new WeatherManager(weatherData);
     spriteList.push(weatherManager);
 
-    commandline = document.querySelector("#command-line")
+    commandCenter = new CommandCenter(weatherManager, currentCity);
+ 
     globalTick();
 
     document.querySelector("#lessWind").addEventListener("click",()=>{weatherManager.changeWind(--weatherManager.wind)})
     document.querySelector("#moreWind").addEventListener("click",()=>{weatherManager.changeWind(++weatherManager.wind)})
 
-    
+    window.addEventListener("keyup", (e) =>{
+
+        if(e.key == "Enter" && document.activeElement === commandCenter.command)
+            commandCenter.submitCommand();      
+    })
+
+    window.addEventListener("keydown", (e) =>{
+        if(e.key == "1")
+            changeCity("quebec") ;
+        else if(e.key == "2")
+            changeCity("paris") ;
+        else if(e.key == "3")
+            changeCity("tokyo") ;
+    })
+
+
 })
 
 
@@ -59,77 +72,14 @@ const globalTick = () => {
     window.requestAnimationFrame(globalTick);
 }
 
-window.addEventListener("keyup", async (e) =>{
-    console.log(e.key)
-    let city = document.querySelector("#city_select");
-    if(e.key == "1")
-    {
-        changeCity("quebec") ;
-    }
-        
-    else if(e.key == "2")
-    {
-        changeCity("paris") ;
-    }
 
-    else if(e.key == "3")
-    {
-        changeCity("tokyo") ;
-    }
 
-    else if(e.key == "Enter" && document.activeElement === commandline)
-    {
-        submitCommand();
-    }
-        
-})
 
 const changeCity = async (city) =>{
 
     currentCity.changeCity(city);
     console.log(currentCity.lat+", "+currentCity.long)
     weatherManager.setWeather(await fetchData(currentCity.lat, currentCity.long))
-}
-
-const submitCommand = () => {
-
-    let texte = commandline.value;
-    let erreur = document.querySelector("#erreur-command");
-    console.log(texte);
-
-
-    if(texte == "sudo rain")
-    {
-        console.log("make it rain")
-        //toggle rain
-        weatherManager.rain > 0  ? weatherManager.rain = 0 : weatherManager.rain = 1;
-        erreur.style.display ="none";
-    }
-    else if(texte == "sudo snow")
-    {
-        console.log("snow time")
-        //toggle rain
-
-        weatherManager.snow > 0  ? weatherManager.snow = 0 : weatherManager.snow = 1;
-        erreur.style.display ="none";
-    }
-    else if(texte == "sudo daytime"){
-        
-        weatherManager.daytime > 0  ? weatherManager.daytime = 0 : weatherManager.daytime = 1;
-        currentCity.setBackground(weatherManager.daytime);
-        startLoadingScreen();
-        erreur.style.display ="none";
-    }
-    else if(texte == "sudo sat"){
-        tickCount = 0;
-    }
-    else{
-        erreur.style.display ="block";
-        console.log("erreur");
-    }
-        
-
-    commandline.value = "";
 }
 
 

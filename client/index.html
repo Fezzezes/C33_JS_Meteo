@@ -11,7 +11,7 @@
     <body>         
         
 	<main id="index-main" class="window-green">
-        <h1>Centre de control météologique de dieu</div>
+        <h1>Centre de controle météorologique</div>
         <h3>Terminal</h3>
         <section>
             <div class="window" id="authentification-window">
@@ -27,13 +27,20 @@
                 </form>
             </div>
 
-            <div class="window" id="status-window">
-                <ul id="status">
-                    <div>Status</div>
-                    <li>Québec : <span class="highlight">Online</span></li>
-                    <li>Paris  : <span class="highlight">Online</span></li>
-                    <li>Tokyo  : <span class="highlight">Online</span></li>
-                </ul>
+            <div class="window" id="index-city-selection">
+
+                    <div style="padding-bottom: 5px;">Choisir une ville</div>
+                    
+                    <input class="index-city-btn" type="radio" id="quebec" name="select-city" checked >
+                    <label for="quebec">Québec</label>
+
+                    <input class="index-city-btn" type="radio" id="paris" name="select-city">
+                    <label for="paris">Paris </label>
+
+                    <input class="index-city-btn" type="radio" id="tokyo" name="select-city">
+                    <label for="tokyo">Tokyo </label>
+                    
+
             </div>
 
         </section>

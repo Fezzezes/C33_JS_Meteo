@@ -1,5 +1,6 @@
 import { loading, spriteList } from "./page-meteo";
-import Particule from "./particule";
+import RainDrop from "./raindrop";
+import SnowFlake from "./snowflake";
 
 
 export class WeatherManager{
@@ -9,40 +10,31 @@ export class WeatherManager{
         this.node = document.createElement("div");
         this.node.classList.add("weather")
         
-        this.weatherData;
+        console.log(weatherData);
+        this.weatherData = weatherData;
 
         
-        // this.rain = 0;
-        // this.wind = 0;
-        // this.temp = 0;
+        this.rain = 0;
+        this.snow = 0;
+        this.wind = 0;
+        this.temp = 0;
 
         // document.querySelector("#city-view-window").prepend(this.node);
-        
-        this.weatherText = document.createElement("p");
-        this.weatherText.id="status";
-
-        this.statusWindow = document.querySelector("#weather-status-window");
-        this.statusWindow.append(this.weatherText);
         this.setWeather(weatherData)
-        
         this.alive = true;
     }
 
     setWeather(weatherData){
 
-        console.log(weatherData);
-        this.weatherData = weatherData;
-
         this.rain = weatherData.rain;
-        // this.rain = 1;
         this.wind = weatherData.windSpeed10m;
-        // this.wind = 10
-        this.temp = weatherData.temperature;
+        this.snow = weatherData.snowfall;
+        this.changeTemp(weatherData.temperature);
+        
         console.log("rain: "+this.rain);
         console.log("wind: "+this.wind);
+        console.log("temp: "+this.snow);
         console.log("temp: "+this.temp);
-
-        this.changeTemp(this.temp)
     }
 
     changeTemp(temp){
@@ -50,15 +42,33 @@ export class WeatherManager{
         console.log("new temp: "+temp);
         this.temp = temp;
         document.querySelector("#celcius").innerText = temp +"°C"
-        this.weatherText.innerText = "Il fait présentement "+temp+" degrées Celcius";
+    }
+    
+
+    getWeatherString(){
+
+        //retourne un string décrivant la météo actuelle
+        let string = "Il fait présentement "+this.temp+" degrées Celcius. Les vents soufflent à une force de "+this.wind+". ";
+
+        if(this.rain > 0)
+            string+="Il y a présentement de la pluie. "
+
+        if(this.snow > 0)
+            string+="Il y a présentement de la neige. "
+        
+        return string;
     }
 
     tick()
     {
-        if(this.rain != 0 && !loading.alive)
-            spriteList.push(new Particule(this.temp, this.wind));
+        if(!loading.alive)
+        {
+            if(this.rain > 0)
+                spriteList.push(new RainDrop(this.temp, this.wind));
 
-            // this.rain = 0;
+            if(this.snow > 0)
+                spriteList.push(new SnowFlake(this.temp, this.wind));
+        }
 
         return this.alive;
     }

@@ -6,7 +6,7 @@ import { loadingCircle } from "./loading";
 
 let currentCity;
 export let spriteList = [];
-let weatherManager;
+export let weatherManager;
 let commandline;
 let commandlineIsFocus;
 // let btnRain;

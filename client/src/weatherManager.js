@@ -1,4 +1,5 @@
-import { loading, spriteList } from "./page-meteo";
+import { spriteList } from "./page-meteo";
+import LoadingScreen from "./loading";
 import RainDrop from "./raindrop";
 import SnowFlake from "./snowflake";
 import { currentCity } from "./page-meteo";
@@ -28,13 +29,12 @@ export class WeatherManager{
     setWeather(weatherData){
 
         this.rain = weatherData.rain;
-        this.wind = weatherData.windSpeed10m;
         this.snow = weatherData.snowfall;
         this.daytime =weatherData.isDay;
-        this.daytime = 1;
+        this.temp = weatherData.temperature
+        this.changeWind(weatherData.windSpeed10m);
+
         currentCity.setBackground(this.daytime);
-        this.changeTemp(weatherData.temperature);
-        
         
         console.log("rain: "+this.rain);
         console.log("wind: "+this.wind);
@@ -43,18 +43,18 @@ export class WeatherManager{
         console.log("day: "+this.daytime)
     }
 
-    changeTemp(temp){
+    changeWind(wind){
 
-        console.log("new temp: "+temp);
-        this.temp = temp;
-        document.querySelector("#celcius").innerText = temp +"°C"
+        console.log("new wind: "+wind);
+        this.wind = wind;
+        document.querySelector("#celcius").innerText =" wind:"+ wind;
     }
     
 
     getWeatherString(){
 
         //retourne un string décrivant la météo actuelle
-        let string = "Il fait présentement "+this.temp+" degrées Celcius. Les vents soufflent à une force de "+this.wind+". ";
+        let string = "Il fait présentement "+this.temp+" degrées Celcius dans la ville de "+currentCity.cityName+". Les vents soufflent à une force de "+this.wind+". ";
 
         if(this.rain > 0)
             string+="Il y a présentement de la pluie. ";
@@ -70,8 +70,8 @@ export class WeatherManager{
 
     tick()
     {
-        //trigger après le loading animation
-        if(!loading.alive)
+        //trigger si il n'y a plus de loading dans sprite list
+        if(spriteList.find(x => x instanceof LoadingScreen) == null)
         {
             if(this.rain > 0)
                 spriteList.push(new RainDrop(this.wind));

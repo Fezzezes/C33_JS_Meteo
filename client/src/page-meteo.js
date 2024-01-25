@@ -1,8 +1,8 @@
 import { fetchData } from "./meteo-api";
 import { Ville } from "./ville";
 import { WeatherManager } from "./weatherManager";
-import loadingScreen from "./loading";
-import { loadingCircle } from "./loading";
+import LoadingScreen from "./loading";
+import TypeWriterEffect from "./typewriter";
 
 export let spriteList = [];
 export let currentCity;
@@ -12,10 +12,9 @@ let commandlineIsFocus;
 // let btnRain;
 // let btnWind;
 // let btnTemp;
-let lessTempBtn;
-let moreTempBtn;
 
-export let loading;
+
+
 
 window.addEventListener("load", async () => {
 
@@ -30,11 +29,8 @@ window.addEventListener("load", async () => {
     commandline = document.querySelector("#command-line")
     globalTick();
 
-
-    lessTempBtn = document.querySelector("#lesstemp")
-    moreTempBtn = document.querySelector("#moretemp")
-    lessTempBtn.addEventListener("click",()=>{weatherManager.changeTemp(--weatherManager.temp)})
-    moreTempBtn.addEventListener("click",()=>{weatherManager.changeTemp(++weatherManager.temp)})
+    document.querySelector("#lessWind").addEventListener("click",()=>{weatherManager.changeWind(--weatherManager.wind)})
+    document.querySelector("#moreWind").addEventListener("click",()=>{weatherManager.changeWind(++weatherManager.wind)})
 })
 
 
@@ -101,12 +97,20 @@ const submitCommand = () => {
 
         weatherManager.rain > 0  ? weatherManager.rain = 0 : weatherManager.rain = 1;
     }
-    if(texte == "sudo snow")
+    else if(texte == "sudo snow")
     {
         console.log("snow time")
         //toggle rain
 
         weatherManager.snow > 0  ? weatherManager.snow = 0 : weatherManager.snow = 1;
+    }
+    else if(texte == "sudo day"){
+        weatherManager.daytime = 0;
+        currentCity.setBackground(weatherManager.daytime);
+    }
+    else if(texte == "sudo night"){
+        weatherManager.daytime = 1;
+        currentCity.setBackground(weatherManager.daytime);
     }
     else
         console.log("erreur");
@@ -117,12 +121,19 @@ const submitCommand = () => {
 
 export const startLoadingScreen = () =>{
     
-    if(loading != null){
-        loading.alive = false;
-    }
+    //cancel ces animation si le user change de ville durant un loading screen
+    let loading = spriteList.find(x => x instanceof LoadingScreen);
+    let typeWriter = spriteList.find(x => x instanceof TypeWriterEffect);
 
-    loading = new loadingScreen();
-    spriteList.push(loading);
+    console.log("i found loadingScreen: "+(loading != null))
+    console.log("i found typeWriter: "+(typeWriter != null))
+    if(loading != null) 
+        loading.alive = false;
+
+    if(typeWriter != null)
+        typeWriter.killMe();
+    
+    spriteList.push(new LoadingScreen());
 
 }
 

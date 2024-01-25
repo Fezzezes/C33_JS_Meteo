@@ -219,25 +219,11 @@ input{
 
 
 
-.background-quebec,
-.background-paris,
-.background-tokyo{
+.background-city{
     background-size: cover;
 }
 
-.background-quebec{
-    background-color: aqua;
 
-    /* background-image: url("../img/quebec_jour.png");   */
-}
-.background-paris{
-    background-color: yellowgreen;
-    /* background-image: url("../img/paris_jour.png"); */
-}
-.background-tokyo{
-    background-color: orange;
-    /* background-image: url("../img/tokyo_jour.png"); */
-}
 
 .particule{
     
@@ -268,20 +254,38 @@ input{
 
 
 /*----------------------------meteo-----------------------------*/
+#meteo-main{
+    width: 90%;
+}
 #button-panel{
+    width: 560px;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    height:fit-content
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
+    
 }
 
-#control-window{
+#button-panel p {
+    color: red;
+    text-shadow: 1px 1px 10px rgb(151, 56, 56);
+    display: none;
+}
+#button-panel p:last-child::after{
+    /*enleve le clignotant*/
+    content: none;
+}
+
+#control-center{
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
-
+#status-wrapper{
+    display: flex;
+    height: 90vh;
+    
+}
 #city-weather-window{
     display: block;
     overflow: hidden;
@@ -291,7 +295,7 @@ input{
 #city-view-window{
 
     position: relative;
-    height: 60vh;
+    height: 65vh;
     overflow: hidden;
     padding: 0px;
 }
@@ -347,16 +351,19 @@ input{
 
 #city-selection-window{
 
-    width: 350px;
+    height: fit-content;
+    width: 275px;
+    padding: 5px;
     padding-left: 25px;
+    
 }
 
 #city-selection-window li{
-margin-left: 25px;
+    margin-left: 25px;
 }
 
 
-.temp-btn{
+.wind-btn{
     width: 25px;
     height: 25px;
     border: none;
@@ -367,9 +374,16 @@ margin-left: 25px;
 #celcius{
     margin-left: 10px;
     margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     color: white;
-    width: 60px;
+    width: fit-content;
     height: 25px;
     border: solid gray 1px;
-    border-radius:10px ; 
+    border-radius:10px ;
+    text-align: center; 
+}
+
+#weatherText{
+    font-size: larger;
 }

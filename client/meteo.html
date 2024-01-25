@@ -10,7 +10,7 @@
     </head>
     <body>
 
-        <a href="index.html">Quitter</a>
+        
         <!-- <select name="city" id="city_select">
             <option value="quebec">Québec</option>
             <option value="paris">Paris</option>
@@ -18,43 +18,46 @@
         </select> -->
 
 
-        <div id="control-window"> 
+        <div id="control-center"> 
             <div class="window" id="button-panel">
-                <button class="temp-btn" id="moretemp">+</button>
-                <button class="temp-btn" id="lesstemp">-</button>
-                <div id="celcius">°C</div>
-                <label><input type="text" id="command-line"></label>
+                <button class="wind-btn" id="moreWind">+</button>
+                <button class="wind-btn" id="lessWind">-</button>
+                <div id="celcius"></div>
+                <label><input type="text" id="command-line" style="margin-right: 15px;"></label>
+                <a href="index.html">Quitter</a>
+                <p style="color: red; width: fit-content;">Commande Invalide</p>
              </div>
+
              <div class="window" id="city-selection-window">
                 <ol id="city-selection-list">
-                    <div style="text-align: center;">Select City</div>
-                    <li>Québec : <span class="highlight">Online</span></li>
-                    <li>Paris   : <span class="highlight">Online</span></li>
-                    <li>Tokyo   : <span class="highlight">Online</span></li>
+                    <li>Québec : <span class="highlight" id="quebec-select">Online</span></li>
+                    <li>Paris  : <span class="highlight" id="paris-select">Online</span></li>
+                    <li>Tokyo  : <span class="highlight" id="tokyo-select">Online</span></li>
+       
                 </ol>
-             </div>
+            </div>
         </div>
-        </div>
-        <div>
 
 
-        <div id="meteo-main" class="window-green">
+       
 
-            
-            <div class="window" id="city-view-window">
+        
+            <div id="meteo-main" class="window-green">
+
                 
-                <div id="city-loadingScreen"></div>
-                <div id="city-loadingCircle"></div>
-                <div id="city-background">
-                    <div class="window" id="weather-status-window">
-                        <p>Ville:<span id="city_name"></span></p>
-                        <p id="weatherText"></p>
+                <div class="window" id="city-view-window">
+                    
+                    <div id="city-loadingScreen"></div>
+                    <div id="city-loadingCircle"></div>
+                    <div id="city-background" class="background-city">
+                        <div class="window" id="weather-status-window">
+                            <p id="weatherText"></p>
+                        </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
-                
-                
+            </div>
 
-        </div>
+
+   
     </body>
 </html>

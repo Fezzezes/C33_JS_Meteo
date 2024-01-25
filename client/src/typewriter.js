@@ -1,5 +1,5 @@
 
-export class TypeWriterEffect{
+export default class TypeWriterEffect{
 
     constructor(node, text){
         //vide le texte du status window
@@ -13,10 +13,12 @@ export class TypeWriterEffect{
         this.tickCounter = 0;
         //la lettre suivante
         this.nextLetter = 0;
+
+        this.alive = true;
     }
 
     tick(){
-        let alive = true;
+        
         //incremente compteur
         ++this.tickCounter;
         //trigger every 'this.speed' tick
@@ -28,19 +30,15 @@ export class TypeWriterEffect{
         }
 
        if(this.nextLetter > this.text.length){
-            alive =false;
+            this.alive = false;
        }
 
-        return alive;
+        return this.alive;
     }
 
-    typeWriter = (index, text) => {
-
-        //écrit une lettre à la fois
-       
-        console.log("writing and "+this.alive)
-        if(index < text.length){
-            this.weatherText.innerText += text.charAt(index);
-        }
+    killMe(){
+        this.alive = false;
+        this.node.innerText = "";
+        console.log("Typerwriter is kill");
     }
 }

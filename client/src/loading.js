@@ -1,9 +1,9 @@
 import { spriteList } from "./page-meteo";
 import { weatherManager } from "./page-meteo";
-import TiledImage from "./TiledImage";
-import { WeatherManager } from "./weatherManager";
+import TypeWriterEffect from "./typewriter";
 
-export default class loadingScreen {
+
+export default class LoadingScreen {
 
     constructor(){
         
@@ -19,8 +19,8 @@ export default class loadingScreen {
         this.circle.style.display = "block";
 
         //vide le texte du status window
-        // this.weatherText = document.querySelector("#weatherText");
-        // this.weatherText.innerText = "";
+        this.weatherText = document.querySelector("#weatherText");
+        this.weatherText.innerText = "";
     }
 
     tick(){
@@ -46,19 +46,6 @@ export default class loadingScreen {
             
         return this.alive;
     }
-
-
-    // typeWriter = (index, text) => {
-
-    //     //écrit une lettre à la fois
-    //     console.log("writing and "+this.alive)
-    //     if(index < text.length){
-    //         this.weatherText.innerText += text.charAt(index);
-    //         index++;
-    //         window.setTimeout(()=>{this.typeWriter(index, text, this.weatherText)}, 25)
-    //     }
-    // }
-
 
 }
 

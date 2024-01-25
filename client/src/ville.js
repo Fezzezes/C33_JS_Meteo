@@ -17,16 +17,15 @@ export class Ville{
     }
 
     changeCity(nextCity) {
-        let text = document.querySelector("#city_name");
-        // console.log("removing background-"+this.cityName.innerText);
-        // console.log("adding background-"+this.citySelect.value);
-        console.log("leaving ["+text.innerText+"] and going to ["+nextCity+"]")
-        this.node.classList.remove("background-"+text.innerText)
-        this.node.classList.add("background-"+nextCity);
-        text.innerText = nextCity; 
-        this.cityName = nextCity;
-        this.setCoordonate();
+        let oldSelection = document.querySelector("#"+this.cityName+"-select");
+        oldSelection.innerText = "Online"; 
 
+        this.cityName = nextCity;
+
+        let nextSelection = document.querySelector("#"+this.cityName+"-select");
+        nextSelection.innerText = "Monitering"; 
+        
+        this.setCoordonate();
         startLoadingScreen();
     }
 
@@ -53,10 +52,10 @@ export class Ville{
             isDay == 0 ? bg ="url('./img/quebec_jour.png')" : bg ="url('./img/quebec_nuit.png')";
 
         else if(this.cityName == "paris")
-            isDay == 0 ? bg ="url('img/paris_nuit.png')": bg ="url('img/paris_nuit.png')";
+            isDay == 0 ? bg ="url('./img/paris_jour.png')": bg ="url('./img/paris_nuit.png')";
         
         else if(this.cityName == "tokyo")
-            isDay == 0 ? bg ="url('img/tokyo_nuit.png')": bg ="url('img/tokyo_nuit.png')";
+            isDay == 0 ? bg ="url('./img/tokyo_jour.png')": bg ="url('./img/tokyo_nuit.png')";
         
 
         this.node.style.backgroundImage = bg;

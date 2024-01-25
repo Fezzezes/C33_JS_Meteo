@@ -1,35 +1,22 @@
 export default class SnowFlake {
-    constructor(temp, wind){
+    constructor(wind){
 
         this.node = document.createElement("div");
         this.parent = document.querySelector("#city-view-window");
-        
-       
         this.parent.append(this.node);
 
         this.wind = 0.5*wind;
-   
-        this.node.classList.add("particule"); 
-
-        if(temp < -2)
-        {
-            this.windVelocity = Math.random()*(this.wind);
-
-            this.node.classList.add("snowDrop");  
-        }
-        else
-            this.node.classList.add("rainDrop");
+        this.windVelocity = Math.random()*(this.wind);
         
-   
+        this.node.classList.add("particule"); 
+        this.node.classList.add("snowFlake");  
+
         this.x = (Math.random()*window.innerWidth-20);
         this.y = 0;
         
-
         this.node.style.left = this.x+"px";
+        this.node.style.scale = Math.random()*1.5;
 
-        // this.node.style.scale = Math.random()*1.5;
-
-        
         this.speed = 10;
     }
 

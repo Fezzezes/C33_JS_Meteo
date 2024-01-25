@@ -4,8 +4,8 @@ import { WeatherManager } from "./weatherManager";
 import loadingScreen from "./loading";
 import { loadingCircle } from "./loading";
 
-let currentCity;
 export let spriteList = [];
+export let currentCity;
 export let weatherManager;
 let commandline;
 let commandlineIsFocus;
@@ -101,7 +101,14 @@ const submitCommand = () => {
 
         weatherManager.rain > 0  ? weatherManager.rain = 0 : weatherManager.rain = 1;
     }
-        else
+    if(texte == "sudo snow")
+    {
+        console.log("snow time")
+        //toggle rain
+
+        weatherManager.snow > 0  ? weatherManager.snow = 0 : weatherManager.snow = 1;
+    }
+    else
         console.log("erreur");
 
     commandline.value = "";
@@ -114,7 +121,7 @@ export const startLoadingScreen = () =>{
         loading.alive = false;
     }
 
-    loading = new loadingScreen()
+    loading = new loadingScreen();
     spriteList.push(loading);
 
 }

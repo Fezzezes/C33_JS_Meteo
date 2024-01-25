@@ -45,31 +45,21 @@ export class Ville{
         }
     }
 
-  
-
     setBackground(isDay){
 
-        if(this.citySelect.value == "quebec"){
+        let bg;
+    
+        if(this.cityName == "quebec")
+            isDay == 0 ? bg ="url('./img/quebec_jour.png')" : bg ="url('./img/quebec_nuit.png')";
 
-            if(isDay)
-                this.node.style.backgroundImage = "url('img/quebec_jour.png')"
-            else
-                this.node.style.backgroundImage = "url('img/quebec_nuit.png')"
-        }
-        else if(this.citySelect.value == "paris"){
+        else if(this.cityName == "paris")
+            isDay == 0 ? bg ="url('img/paris_nuit.png')": bg ="url('img/paris_nuit.png')";
+        
+        else if(this.cityName == "tokyo")
+            isDay == 0 ? bg ="url('img/tokyo_nuit.png')": bg ="url('img/tokyo_nuit.png')";
+        
 
-            if(isDay)
-                this.node.style.backgroundImage = "url('img/paris_nuit.png')"
-            else
-                this.node.style.backgroundImage = "url('img/paris_nuit.png')"
-        } 
-        else if(this.citySelect.value == "tokyo"){
-
-            if(isDay)
-                this.node.style.backgroundImage = "url('img/tokyo_nuit.png')"
-            else
-                this.node.style.backgroundImage = "url('img/tokyo_nuit.png')"
-        }
+        this.node.style.backgroundImage = bg;
     }
 
 }

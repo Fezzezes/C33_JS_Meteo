@@ -19,8 +19,8 @@ export default class loadingScreen {
         this.circle.style.display = "block";
 
         //vide le texte du status window
-        this.weatherText = document.querySelector("#weatherText");
-        this.weatherText.innerText = "";
+        // this.weatherText = document.querySelector("#weatherText");
+        // this.weatherText.innerText = "";
     }
 
     tick(){
@@ -40,20 +40,26 @@ export default class loadingScreen {
             //cache le loading circle
             this.circle.style.display = "none";
             //ecrit le texte avec un effet de typewriter dans la fenetre weatherText
-            this.typeWriter(0, weatherManager.getWeatherString());
+            // this.typeWriter(0, weatherManager.getWeatherString());
+            spriteList.push(new TypeWriterEffect(document.querySelector("#weatherText"), weatherManager.getWeatherString()))
         }
             
         return this.alive;
     }
 
-    typeWriter = (index, text) => {
 
-        //écrit une lettre à la fois
-        if(index < text.length){
-            this.weatherText.innerText += text.charAt(index);
-            index++;
-            window.setTimeout(()=>{this.typeWriter(index, text, this.weatherText)}, 25)
-        }
-    }
+    // typeWriter = (index, text) => {
+
+    //     //écrit une lettre à la fois
+    //     console.log("writing and "+this.alive)
+    //     if(index < text.length){
+    //         this.weatherText.innerText += text.charAt(index);
+    //         index++;
+    //         window.setTimeout(()=>{this.typeWriter(index, text, this.weatherText)}, 25)
+    //     }
+    // }
+
+
 }
+
 

@@ -3,22 +3,20 @@ import { Ville } from "./ville";
 import { WeatherManager } from "./weatherManager";
 import LoadingScreen from "./loading";
 import TypeWriterEffect from "./typewriter";
+import Satellite from "./satellite";
 
 export let spriteList = [];
 export let currentCity;
 export let weatherManager;
 let commandline;
-let commandlineIsFocus;
-// let btnRain;
-// let btnWind;
-// let btnTemp;
+
 
 
 
 
 window.addEventListener("load", async () => {
 
-
+    console.log(await fetchData(28.6139,-77.2090 ))
     
     currentCity = new Ville("quebec");
     
@@ -31,12 +29,15 @@ window.addEventListener("load", async () => {
 
     document.querySelector("#lessWind").addEventListener("click",()=>{weatherManager.changeWind(--weatherManager.wind)})
     document.querySelector("#moreWind").addEventListener("click",()=>{weatherManager.changeWind(++weatherManager.wind)})
+
+    
 })
 
 
-
+let tickCount = 0;
 const globalTick = () => {
 
+    
     // console.log("tick");
     for(let i = 0; i < spriteList.length; i++)
     {
@@ -47,8 +48,14 @@ const globalTick = () => {
         }
     }
 
+    if(tickCount % 1000 == 0){
+
+        spriteList.push(new Satellite());
+        tickCount = 0;
+    }
     // console.log("sprites: "+spriteList.length);
     // console.log(spriteList);
+    tickCount++;
     window.requestAnimationFrame(globalTick);
 }
 
@@ -87,6 +94,7 @@ const changeCity = async (city) =>{
 const submitCommand = () => {
 
     let texte = commandline.value;
+    let erreur = document.querySelector("#erreur-command");
     console.log(texte);
 
 
@@ -94,8 +102,8 @@ const submitCommand = () => {
     {
         console.log("make it rain")
         //toggle rain
-
         weatherManager.rain > 0  ? weatherManager.rain = 0 : weatherManager.rain = 1;
+        erreur.style.display ="none";
     }
     else if(texte == "sudo snow")
     {
@@ -103,17 +111,23 @@ const submitCommand = () => {
         //toggle rain
 
         weatherManager.snow > 0  ? weatherManager.snow = 0 : weatherManager.snow = 1;
+        erreur.style.display ="none";
     }
-    else if(texte == "sudo day"){
-        weatherManager.daytime = 0;
+    else if(texte == "sudo daytime"){
+        
+        weatherManager.daytime > 0  ? weatherManager.daytime = 0 : weatherManager.daytime = 1;
         currentCity.setBackground(weatherManager.daytime);
+        startLoadingScreen();
+        erreur.style.display ="none";
     }
-    else if(texte == "sudo night"){
-        weatherManager.daytime = 1;
-        currentCity.setBackground(weatherManager.daytime);
+    else if(texte == "sudo sat"){
+        tickCount = 0;
     }
-    else
+    else{
+        erreur.style.display ="block";
         console.log("erreur");
+    }
+        
 
     commandline.value = "";
 }

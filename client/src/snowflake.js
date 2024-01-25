@@ -17,7 +17,7 @@ export default class SnowFlake {
         this.node.style.left = this.x+"px";
         this.node.style.scale = Math.random()*1.5;
 
-        this.speed = 10;
+        this.speed = 10+wind;
     }
 
     tick (){

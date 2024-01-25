@@ -22,7 +22,6 @@ export default class TypeWriterEffect{
         //incremente compteur
         ++this.tickCounter;
         //trigger every 'this.speed' tick
-        console.log("tick")
         if(this.tickCounter % this.speed == 0){
             
             this.node.innerText += this.text.charAt(this.nextLetter);

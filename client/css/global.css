@@ -71,7 +71,7 @@ body{
     background-attachment: fixed;
     /*page margin*/
     margin: 20px;
-    overflow: hidden;
+    overflow:hidden;
 }
 
 .window-green{
@@ -92,7 +92,7 @@ body{
     /* 
     width: 900px;
     height: 800px; */
-    
+    z-index: 5;
     
 }
 
@@ -192,7 +192,7 @@ li{
     border: gray solid;
     border-radius: 25px 25px 25px 25px;
     background-color:rgba(39, 36, 36, 0.61);
-  
+    z-index: 5;
 }
 
 
@@ -221,6 +221,7 @@ input{
 
 .background-city{
     background-size: cover;
+    
 }
 
 
@@ -252,10 +253,25 @@ input{
     
 }
 
+.satellite{
+    background-image: url("../img/satellite.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    /* bottom: 0px;
+    left: 0px; */
+
+    width: 200px;
+    height: 200px;
+
+    z-index: -1;    
+}
 
 /*----------------------------meteo-----------------------------*/
 #meteo-main{
     width: 90%;
+    
+    z-index: -1;
 }
 #button-panel{
     width: 560px;
@@ -270,6 +286,7 @@ input{
 #button-panel p {
     color: red;
     text-shadow: 1px 1px 10px rgb(151, 56, 56);
+    padding: 0px;
     display: none;
 }
 #button-panel p:last-child::after{
@@ -280,6 +297,7 @@ input{
 #control-center{
     display: flex;
     justify-content: space-evenly;
+    z-index: -1000;
 }
 #status-wrapper{
     display: flex;
@@ -290,6 +308,7 @@ input{
     display: block;
     overflow: hidden;
     position: relative;
+    
 }
 
 #city-view-window{
@@ -298,6 +317,7 @@ input{
     height: 65vh;
     overflow: hidden;
     padding: 0px;
+    
 }
 
 #city-background,

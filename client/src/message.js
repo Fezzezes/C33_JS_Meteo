@@ -1,9 +1,11 @@
 export default class Message{
 
-    constructor(message, color){
+    constructor(message, color, parent){
         //crée un p enfant de #button-panel
+        
         this.erreur = document.createElement("p");
-        document.querySelector("#button-panel").append(this.erreur)
+        this.parent = document.getElementById(parent);
+        this.parent.append(this.erreur)
 
         //set l'id, la couleur et le message
         this.erreur.id = "erreur-command"

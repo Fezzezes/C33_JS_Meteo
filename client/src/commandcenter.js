@@ -9,24 +9,27 @@ export default class CommandCenter{
         this.command = document.querySelector("#command-line")
         this.weatherManager = weatherManager
         this.currentCity = city;
+        
     }
     
     submitCommand(){
     
         //le texte dans la ligne de commande
         let texte = this.command.value;
-        
+        let messageParent = "button-panel";
+
+
         console.log(texte);
 
         if(texte == "sudo rain"){
             //toggle rain + message
             if(this.weatherManager.rain > 0 ){
                 this.weatherManager.rain = 0
-                spriteList.push(new Message("Rain off", "greenyellow"))
+                spriteList.push(new Message("Rain off", "greenyellow", messageParent ))
             }
             else{
                 this.weatherManager.rain = 1
-                spriteList.push(new Message("Rain on", "greenyellow"))
+                spriteList.push(new Message("Rain on", "greenyellow", messageParent ))
             }     
         }
         else if(texte == "sudo snow"){
@@ -35,11 +38,11 @@ export default class CommandCenter{
             if(this.weatherManager.snow > 0){
 
                 this.weatherManager.snow = 0
-                spriteList.push(new Message("Snow off", "greenyellow"))
+                spriteList.push(new Message("Snow off", "greenyellow", messageParent ))
             }
             else{
                 this.weatherManager.snow = 1
-                spriteList.push(new Message("Snow on", "greenyellow"))
+                spriteList.push(new Message("Snow on", "greenyellow", messageParent ))
             } 
         }
         else if(texte == "sudo daytime"){
@@ -47,11 +50,11 @@ export default class CommandCenter{
             if(this.weatherManager.daytime > 0 ){
 
                 this.weatherManager.daytime = 0
-                spriteList.push(new Message("Day Time", "greenyellow"))
+                spriteList.push(new Message("Day Time", "greenyellow", messageParent ))
             }
             else{
                 this.weatherManager.daytime = 1
-                spriteList.push(new Message("Night Time", "greenyellow"))
+                spriteList.push(new Message("Night Time", "greenyellow", messageParent ))
             } 
 
             //ajuste le backgground
@@ -60,11 +63,11 @@ export default class CommandCenter{
         else if(texte == "sudo sat"){
             //envoie un satelitte
             spriteList.push(new Satellite());
-            spriteList.push(new Message("Satelitte launched!", "greenyellow"))
+            spriteList.push(new Message("Satelitte launched!", "greenyellow", messageParent ))
         }
         else{
             //input invalide
-            spriteList.push(new Message("Invalid Input...", "red"))
+            spriteList.push(new Message("Invalid Input...", "red", messageParent ))
         } 
         //clear la command line
         this.command.value = "";

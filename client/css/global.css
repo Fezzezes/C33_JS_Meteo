@@ -54,7 +54,7 @@ h3{
     box-shadow: 0px 25px 20px rgba(53, 248, 4, 0.329);
     
     /*Le background du h3 fera la largeur de sa boite*/
-    width: 100%;
+    width: 1010px;
     /*Aucune marge inférieur pour colle le background des 'p' enfants au background des h3*/
     margin-bottom:  0; 
     padding-left: 10px;
@@ -72,6 +72,13 @@ body{
     /*page margin*/
     margin: 20px;
     overflow:hidden;
+}
+
+#index-body
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 a{
@@ -118,7 +125,15 @@ a:hover{
 
 #index-main{
     margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    min-width: 900px;
+    align-self: center;
 }
+
 
 .highlight{
     /*Couleur choisi pour highlight les liens*/
@@ -153,7 +168,10 @@ section{
     justify-content: space-around;
     background-color:rgba(39, 36, 36, 0.61);
 
-    width: 98%;
+    justify-content: space-around;
+
+
+    width: 1000px;
     /*aucune marge au-dessus et en-dessous pour permettre aux backgrounds de se coller*/
     margin-top: 0;
     margin-bottom: 0;
@@ -174,18 +192,21 @@ p:last-child:after{
 }
 
 #authentification-window{
-    width: 40%;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    position: relative;
     
 }
 
 #index-city-selection{
-    width: 400px;
+    width: fit-content;
     display: flex;
     flex-direction: column;
-    
+
+    height: fit-content;
 }
 
 .index-city-btn:checked + label{
@@ -201,7 +222,11 @@ p:last-child:after{
     pointer-events: none;   
 }
 
-
+.index-city-label:hover{
+    
+    animation: glowFlickerGreen 0.5s alternate infinite;
+    cursor: pointer;
+}
 
 
 .window{
@@ -234,11 +259,22 @@ input{
 }
 
 .d-none{
-    display: none;
-    color: red;
-    padding-left: 15px;
+    position: relative;
+    height: auto;
+}
+.d-none p{
+    color: aqua;
+    
+    text-shadow: 1px 1px 10px rgb(29, 28, 28);
+    padding: 0px;
+    position: absolute;
+    top: -35px;
+    left:0px;
 }
 
+.d-none p::after{
+    content: none;
+}
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -309,7 +345,7 @@ input{
     
 }
 
-#button-panel p {
+#button-panel p{
 
     text-shadow: 1px 1px 10px rgb(29, 28, 28);
     padding: 0px;

@@ -29,13 +29,13 @@ window.addEventListener("load", async () => {
     document.querySelector("#moreWind").addEventListener("click",()=>{weatherManager.changeWind(++weatherManager.wind)})
 
     //on keyup du boutn enter, envoie une commande au commandCenter (si le command line est au focus)
-    window.addEventListener("keyup", (e) =>{
+    window.addEventListener("keydown", (e) =>{
         if(e.key == "Enter" && document.activeElement === commandCenter.command)
             commandCenter.submitCommand();      
     })
 
     //les boutons 1,2,3 peuvent être appuyés pour changer de ville rapidement
-    window.addEventListener("keydown", (e) =>{
+    window.addEventListener("keyup", (e) =>{
         if(e.key == "1")
             changeCity("quebec") ;
         else if(e.key == "2")

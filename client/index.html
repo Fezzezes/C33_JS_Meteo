@@ -8,21 +8,20 @@
         <link rel="stylesheet" href="css/global.css">
         <link rel="icon" href="img/favicon.png" type="image/png" />
     </head>
-    <body>         
+    <body id="index-body">         
         
 	<main id="index-main" class="window-green">
-        <h1>Centre de controle météorologique</div>
-        <h3>Terminal</h3>
+        <h1>Centre de Contrôle Météorologique</div>
+        <h3 id="terminal">Terminal</h3>
         <section>
             <div class="window" id="authentification-window">
-                <p>Veillez entrer votre mot de passe </p>
+                <p>Veuillez entrer votre mot de passe </p>
                 <form action="meteo.html" method="post" id="password-form">
-      
-                    <div class="d-none" id="error-message">
-                        Erreur d'authentification
-                    </div>
+                    
+                    <div class="d-none" id="error-message"></div>
                     <input type="password" name="password" id="password" placeholder="Mot de passe">            
                     <button type="submit">Entrer</button>
+                    
                     
                 </form>
             </div>
@@ -32,13 +31,13 @@
                     <div style="padding-bottom: 5px;">Choisir une ville</div>
                     
                     <input class="index-city-btn" type="radio" id="quebec" name="select-city" checked >
-                    <label for="quebec">Québec</label>
+                    <label for="quebec" class="index-city-label">Québec</label>
 
                     <input class="index-city-btn" type="radio" id="paris" name="select-city">
-                    <label for="paris">Paris </label>
+                    <label for="paris" class="index-city-label">Paris </label>
 
                     <input class="index-city-btn" type="radio" id="tokyo" name="select-city">
-                    <label for="tokyo">Tokyo </label>
+                    <label for="tokyo" class="index-city-label">Tokyo </label>
                     
 
             </div>

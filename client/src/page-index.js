@@ -1,10 +1,20 @@
+let spriteList = []
+import Satellite from "./satellite";
+import Message from "./message";
+import Lamp from "./lamp";
+
 window.addEventListener("load", () => {
+
+
     document.querySelector("#password-form").onsubmit = () => {
         let success = true;
+        let password = document.querySelector("#password");
+        if (password.value !== "web2") {
 
-        if (document.querySelector("#password").value !== "web2") {
+            //erreur : mauvais mot de passe
+            spriteList.push(new Message("Erreur d'authentification", "red", "error-message"))
             success = false;
-            document.querySelector("#error-message").style.display = "block"; 
+            password.value = "";
         }
         else
         {
@@ -23,4 +33,35 @@ window.addEventListener("load", () => {
 
         return success;
     }
+
+    console.log()
+    spriteList.push(new Lamp(document.getElementById("terminal")))
+
+    globalTick();
 })
+
+let tickCount = 0;
+const globalTick = () => {
+
+    //run chaque tick des objets de la liste de sprite
+    for(let i = 0; i < spriteList.length; i++)
+    {
+        //retire de la liste les animations terminées
+        if(!spriteList[i].tick()){
+            spriteList.splice(i,1);
+            i--;
+        }
+    }
+
+    //à chaque 1000 ticks, envoie un satellite
+    if(tickCount % 1000 == 0){
+
+        spriteList.push(new Satellite());
+        tickCount = 0;
+    }
+
+    //incremente le compteur de tick
+    tickCount++;
+    //loop back
+    window.requestAnimationFrame(globalTick);
+}

@@ -71,6 +71,7 @@ const globalTick = () => {
     //incremente le compteur de tick
     tickCount++;
     //loop back
+    // console.log(spriteList);
     window.requestAnimationFrame(globalTick);
 }
 
@@ -82,7 +83,7 @@ const changeCity = async (city) =>{
     weatherManager.setWeather(await fetchData(currentCity.lat, currentCity.long))
 }
 
-export const startLoadingScreen = () =>{
+export const startLoadingScreen = () => {
     
     //cancel ces animations si elles sont déja dans la liste pour évité des doublés
     let loading = spriteList.find(x => x instanceof LoadingScreen);
@@ -91,15 +92,22 @@ export const startLoadingScreen = () =>{
     console.log("i found loadingScreen: "+(loading != null))
     console.log("i found typeWriter: "+(typeWriter != null))
 
-    if(loading != null) 
-        loading.alive = false;
+    if(loading != null){
+        loading.node.style.top = 0;
+        // loading.alive = false;
+    }
+    else
+        spriteList.push(new LoadingScreen());
+        
 
     if(typeWriter != null)
         typeWriter.killMe();
     
     //commence une nouvelle animation pour le loading screen
-    spriteList.push(new LoadingScreen());
+    
 }
+
+
 
 
 

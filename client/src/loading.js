@@ -32,7 +32,7 @@ export default class LoadingScreen {
         }
 
         //à cette position, l'animation se termine
-        if(this.y > 600)
+        if(this.y > 900)
         {
             //animation de loading fin
             this.alive = false;
@@ -45,6 +45,8 @@ export default class LoadingScreen {
             
         return this.alive;
     }
+
+
 
 }
 

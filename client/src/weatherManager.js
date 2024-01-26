@@ -8,9 +8,6 @@ export class WeatherManager{
 
     constructor(weatherData){
         
-        //Préserve les données meteo
-        this.weatherData = weatherData;
-
         //set la météo
         this.setWeather(weatherData)
         this.alive = true;
@@ -18,21 +15,21 @@ export class WeatherManager{
 
     setWeather(weatherData){
 
+        console.log(weatherData)
         //set la météo
         this.rain = weatherData.rain;
         this.snow = weatherData.snowfall;
         this.daytime =weatherData.isDay;
         this.temp = weatherData.temperature
         this.changeWind(weatherData.windSpeed10m);
-
         //set le background de la ville
         currentCity.setBackground(this.daytime);
         
-        console.log("rain: "+this.rain);
-        console.log("wind: "+this.wind);
-        console.log("snow: "+this.snow);
-        console.log("temp: "+this.temp);
-        console.log("day: "+this.daytime)
+        // console.log("rain: "+this.rain);
+        // console.log("wind: "+this.wind);
+        // console.log("snow: "+this.snow);
+        // console.log("temp: "+this.temp);
+        // console.log("day: "+this.daytime)
     }
 
     changeWind(wind){
@@ -50,7 +47,7 @@ export class WeatherManager{
     getWeatherString(){
 
         //retourne un string décrivant la météo actuelle
-        let string = "Il fait présentement "+this.temp+" degrées Celcius dans la ville de "+currentCity.cityName+". Les vents soufflent à une force de "+this.wind+". ";
+        let string = "Il fait présentement "+this.temp+" degrées Celcius dans la ville de "+currentCity.cityName+". Les vents soufflent à une force de "+this.wind+"ms. ";
         
         if(this.rain > 0)
             string+="Il y a présentement de la pluie. ";

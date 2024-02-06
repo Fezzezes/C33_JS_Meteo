@@ -3,7 +3,7 @@
 ## Francois Bouchard
 
 ### Animations
-
+# Mot de passe : web2
 #### Neige
 Fait tomber des petits flocons blancs de grosseurs variées lorsqu'il neige.
 La trajectoire et la vitesse des flocons est influencée par le vent
@@ -26,5 +26,5 @@ Si le user tente de changer de ville avant la fin de cette animation, annulle ce
 Lorsqu'une ligne de commande est entrer dans le terminal, fait apparaitre un message (erreur/succès) dans celui-ci. 
 Le message perd progressive de l'opacité jusqu'à devenir invisible. Si le user place sa souris sur le message, l'animation sera pausé (et recommencera lorsque la souris ne sera plus sur le message)
 Utilisé aussi pour faire apparaitre un message d'erreur si le mauvais mot de passe est entré dans la page index.
-### Lamp
+### Lampe
 L'alpha du box-shadow vert sous le 'h3 id=terminal' dans la page index augmente et diminue à des intervalles aléatoires pour faire un effet de flicker de luminère néon.
